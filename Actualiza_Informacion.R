@@ -1,0 +1,65 @@
+
+# SE ACTUALIZA LAS FECHAS DE ESTUDIO
+
+x <- as.Date("2023-09-04","%Y-%m-%d")
+h <- as.Date("2023-09-06","%Y-%m-%d")
+
+# NOMBRE DE LA RUTA INICIAL
+
+rc <- "SE COLOCA LA RUTA"
+
+# CREA EL NOMBRE DE LA RUTA DE LOS DIFERENTES ARCHIVOS
+
+FECHA <- mutate(FECHA, DA=str_sub(FECHA, 3, 4), DM=str_sub(FECHA, 6, 7), DD=str_sub(FECHA, 9, 10), NEWDATE=paste(DA,DM,DD)) 
+
+FECHA <- mutate(FECHA, NEWDAT=gsub(" ","",NEWDATE))
+
+# CREA LOS DIFERENTES NOMBRES DE LOS ARCHIVOS QUE SE VAN A CONSTRUIR DE LOS DIFERENTES TOPS
+
+FECHA <- mutate(FECHA, TOP5=paste("TOP5_",FECHA)) 
+
+FECHA <- mutate(FECHA, TOP5=gsub(" ","",TOP5) )
+
+
+FECHA <- mutate(FECHA, TOP10=paste("TOP10_",FECHA)) 
+
+FECHA <- mutate(FECHA, TOP10=gsub(" ","",TOP10) )
+
+
+FECHA <- mutate(FECHA, TOP15=paste("TOP15_",FECHA)) 
+
+FECHA <- mutate(FECHA, TOP15=gsub(" ","",TOP15) )
+
+
+FECHA <- mutate(FECHA, TOP20=paste("TOP20_",FECHA)) 
+
+FECHA <- mutate(FECHA, TOP20=gsub(" ","",TOP20) )
+
+
+FECHA <- mutate(FECHA, TOP25=paste("TOP25_",FECHA)) 
+
+FECHA <- mutate(FECHA, TOP25=gsub(" ","",TOP25) )
+
+
+FECHA <- mutate(FECHA, TOP50=paste("TOP50_",FECHA)) 
+
+FECHA <- mutate(FECHA, TOP50=gsub(" ","",TOP50) )
+
+# TRER EL TIPO DE CAMBIO DE CADA DIA
+
+FECHA <- left_join(FECHA, IDI, by = "FECHA") 
+
+# CREA LOS DIFERENTES NOMBRES DE LOS ARCHIVOS QUE SE VAN A CONSTRUIR PARA LA CONCENTRACION
+
+FECHA <- mutate(FECHA, CONCENTRACION_BS=paste("CONCENTRACION_BS_",FECHA)) 
+
+FECHA <- mutate(FECHA, CONCENTRACION_BS=gsub(" ","",CONCENTRACION_BS) )
+
+
+FECHA <- mutate(FECHA, CONCENTRACION_US=paste("CONCENTRACION_US_",FECHA)) 
+
+FECHA <- mutate(FECHA, CONCENTRACION_US=gsub(" ","",CONCENTRACION_US) )
+
+# ELIMINA LA NOTACION CIENTIFICA
+
+options(scipen=999) 
